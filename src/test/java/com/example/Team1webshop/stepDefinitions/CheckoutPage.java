@@ -1,4 +1,4 @@
-package com.example.Team1webshop.StepDefsTests;
+package com.example.Team1webshop.stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,49 +12,43 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
-public class CheckoutPageStepDefs {
+public class CheckoutPage {
 
     private final WebDriver driver;
 
     Actions actions;
 
-    public CheckoutPageStepDefs() {
+    public CheckoutPage() {
         this.driver = Hooks.getDriver();
     }
 
-    //Mia
     @Given("User has navigated to the checkout page")
     public void user_has_navigated_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 
-    //Mia
     @Given("User has navigated to the product page")
     public void user_has_navigated_to_the_product_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
-    //Mia
     @When("User clicks on the {string} button")
     public void user_clicks_on_the_button(String buttonLabel) {
         WebElement addButton = driver.findElement(By.xpath("//button[contains(text(), '" + buttonLabel + "')]"));
         addButton.click();
     }
 
-    //Mia
     @When("User navigates to the checkout page")
     public void user_navigates_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 
-    //Mia
     @When("User removes 1 item")
     public void user_removes_1_item() {
         WebElement removeButton = driver.findElement(By.xpath("//button[contains(text(), 'Remove')]"));
         removeButton.click();
     }
 
-    //Mia
     @Then("The item count in the shopping cart should decrease by 1")
     public void the_item_count_in_the_shopping_cart_should_decrease_by_1() {
         WebElement itemCountElement = driver.findElement(By.id("cartSize"));
@@ -62,13 +56,11 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(0, updatedItemCount);
     }
 
-    //Mia
     @Given("Users has navigated to the product page")
     public void users_has_navigated_to_the_product_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/products");
     }
 
-    //Mia
     @When("User clicks on the {string} button {int} times")
     public void user_clicks_on_the_button_multiple_times(String buttonLabel, int times) {
         for (int i = 0; i < times; i++) {
@@ -77,13 +69,11 @@ public class CheckoutPageStepDefs {
         }
     }
 
-    //Mia
     @When("Users navigates to the checkout page")
     public void users_navigates_to_the_checkout_page() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout");
     }
 
-    //Mia
     @Then("The item count in the shopping cart should be {int}")
     public void the_item_count_in_the_shopping_cart_should_be(int expectedItemCount) {
         WebElement itemCountElement = driver.findElement(By.id("cartSize"));
@@ -91,7 +81,6 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(expectedItemCount, updatedItemCount);
     }
 
-    // Samuel
     @When("User adds a specific product to the cart {string}")
     public void user_adds_a_specific_product_to_the_cart(String addedProduct) {
         actions = new Actions(driver);
@@ -107,7 +96,6 @@ public class CheckoutPageStepDefs {
         }
     }
 
-    // Samuel
     @Then("User should see same product on checkout page {string}")
     public void user_should_see_same_product_on_checkout_page(String addedProduct) {
         WebElement productElement = driver.findElement(By.xpath("//ul[@id='cartList']//h6"));
@@ -115,7 +103,6 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(addedProduct, productText, "Product does not match");
     }
 
-    // Samuel
     @When("User adds some sample products to cart")
     public void userAddsSomeSampleProductsToCart() {
         actions = new Actions(driver);
@@ -133,7 +120,6 @@ public class CheckoutPageStepDefs {
         }
     }
 
-    //Semih
     @When("User added multiple products to the cart")
     public void user_added_multiple_products_to_the_cart() {
         // Commenting out this since we already have a wait function
@@ -143,7 +129,6 @@ public class CheckoutPageStepDefs {
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
     }
 
-    //Semih
     @Then("Products should be added to cart")
     public void products_should_be_added_to_cart() {
         //wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -160,13 +145,11 @@ public class CheckoutPageStepDefs {
         );
     }
 
-    //Semih
     @When("User clicks on the checkout button")
     public void user_clicks_on_the_checkout_button() {
         driver.findElement(By.xpath("//*[@class='btn btn-warning']")).click();
     }
 
-    //Semih
     @Then("User should be navigated to checkout page")
     public void user_should_be_navigated_to_checkout_page() {
         String actualURL = driver.getCurrentUrl();
@@ -174,13 +157,11 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(expectedURL, actualURL);
     }
 
-    //Semih
     @When("User clicks on shop button")
     public void user_clicks_on_shop_button() {
         driver.findElement(By.xpath("(//*[@class='nav-link px-2 text-white'])[2]")).click();
     }
 
-    //Semih
     @Then("User should be navigated to shopping page")
     public void user_should_be_navigated_to_shopping_page() {
         //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -189,7 +170,6 @@ public class CheckoutPageStepDefs {
         Assertions.assertEquals(expectedURL, actualURL);
     }
 
-    //Semih
     @When("User add to cart button three times for the same product")
     public void user_add_to_cart_button_three_times_for_the_same_product() {
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
@@ -197,7 +177,6 @@ public class CheckoutPageStepDefs {
         driver.findElement(By.xpath("(//*[@class='btn btn-primary'])[3]")).click();
     }
 
-    //Semih
     @Then("three pieces of same products should be added e cart")
     public void three_pieces_of_same_products_should_be_added_e_cart() {
         // wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -215,7 +194,6 @@ public class CheckoutPageStepDefs {
         );
     }
 
-    //Semih
     @Then("Credit card option should be selected as a default payment method")
     public void credit_card_option_should_be_selected_as_a_default_payment_method() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -225,7 +203,6 @@ public class CheckoutPageStepDefs {
         Assertions.assertTrue(paymentMethodOption);
     }
 
-    //Semih
     @Then("User should be able select debit cart or paypal as well as a payment methods")
     public void user_should_be_able_select_debit_cart_or_paypal_as_well_as_a_payment_methods() throws InterruptedException {
         Thread.sleep(3000);
@@ -239,7 +216,6 @@ public class CheckoutPageStepDefs {
         Assertions.assertTrue(debitCardOption);
     }
 
-    // Samuel
     @Then("User should see correct total price")
     public void userShouldSeeCorrectTotalPrice() {
         WebElement cartList = driver.findElement(By.id("cartList"));

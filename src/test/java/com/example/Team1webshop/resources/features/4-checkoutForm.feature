@@ -1,13 +1,11 @@
 Feature: Checkout page form of The Shop web app
   This feature includes test to verify the form functionality on the checkout page
 
-   #Samuel
   Background: User is on the checkout page with a product added to the cart
     Given user is on the products page
     And add product to cart
     And click on checkout
 
-    #Samuel
   Scenario Outline: User should get an error message when submitting an incomplete form on the checkout page
     Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When user click on continue to checkout
@@ -26,7 +24,6 @@ Feature: Checkout page form of The Shop web app
       | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | ""        | "123" |
       | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | ""    |
 
-    #divya
   Scenario Outline: User should be notified on entering invalid mail id
     Given user fills in the form with invalid email <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When user click on continue to checkout
@@ -38,7 +35,6 @@ Feature: Checkout page form of The Shop web app
       | "test"    | "testsson" | "test_email.com"  | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
       | "test"    | "testsson" | "test@@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
 
-    #Semih
   Scenario Outline: User should be able to proceed credit card payment
     Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When User select debit card as a payment method
@@ -48,7 +44,6 @@ Feature: Checkout page form of The Shop web app
       | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
       | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
 
-     #Semih
   Scenario Outline: User should be able to proceed paypal payment
     Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When User select paypal as a payment method
@@ -58,7 +53,6 @@ Feature: Checkout page form of The Shop web app
       | firstName | lastName   | email            | address            | country   | city    | zipCode | ccName          | ccNumber   | expDate   | cvv   |
       | "test"    | "testsson" | "test@email.com" | "Jungmansgatan 12" | "Svergie" | "Malmö" | "21111" | "Test Testsson" | "12345678" | "2030/01" | "123" |
 
-     #Semih
   Scenario Outline: User should be able to proceed credit card payment
     Given user fills in the form with data <firstName> <lastName> <email> <address> <country> <city> <zipCode> <ccName> <ccNumber> <expDate> <cvv>
     When user clicks on continue to checkout

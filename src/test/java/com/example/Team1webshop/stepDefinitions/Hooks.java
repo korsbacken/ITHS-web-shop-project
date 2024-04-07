@@ -1,4 +1,4 @@
-package com.example.Team1webshop.StepDefsTests;
+package com.example.Team1webshop.stepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -14,10 +14,10 @@ public class Hooks {
     @Before
     public void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");                     // Uncomment this for Github Actions
-        options.addArguments("--window-size=1920,1080");        // Uncomment this for Github Actions
-//        options.addArguments("--incognito");                    // Uncomment this when testing locally
-//        options.addArguments("--start-maximized");              // Uncomment this when testing locally
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
+//        options.addArguments("--incognito");
+//        options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
