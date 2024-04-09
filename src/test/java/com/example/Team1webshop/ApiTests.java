@@ -11,9 +11,8 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest
 public class ApiTests {
 
-    private Response response; // Deklarerar response som en privat instansvariabelgit
+    private Response response;
 
-    // Samuel
     @Test
     @DisplayName("Check endpoint status code and if all categories are available")
     public void webShopCategories() {
@@ -27,7 +26,7 @@ public class ApiTests {
             "women's clothing"));
     }
 
-    @Test //Mia
+    @Test
     public void Test_Womens_Endpoint_With_Valid_StatusCode() {
         response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/women's%20clothing").when().get();
         int actualStatusCode = response.getStatusCode(); // get the actual status code
@@ -35,7 +34,7 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); // compare the expected value with the actual value
     }
 
-    @Test //Mia
+    @Test
     public void Test_Womens_Endpoint_With_Correct_Products() {
         String[] expectedTitles = {
                 "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
@@ -59,7 +58,7 @@ public class ApiTests {
                 .body("title", hasItem(expectedTitles[5]));
     }
 
-    @Test //Mia
+    @Test
     public void Test_Womens_Endpoint_Has_correct_Price() {
         baseURI = "https://produktapi-6ef53ba8f2f2.herokuapp.com";
         given().
@@ -67,7 +66,7 @@ public class ApiTests {
                 then().statusCode(200).body("[0].price", equalTo(56.99F)); //test just the price of the first product
     }
 
-    @Test //Mia
+    @Test
     public void Test_Mens_Endpoint_With_Valid_StatusCode() {
         response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/men's%20clothing").when().get();
         int actualStatusCode = response.getStatusCode(); // get the actual status code
@@ -75,7 +74,7 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); // compare the expected value with the actual value
     }
 
-    @Test // Mia
+    @Test
     public void Test_Mens_Endpoint_With_Invalid_StatusCode() {
         // give a wrong URL (added some more links to the URL)
         response = given().baseUri("https://produktapi-6ef53ba8f2f2.herokuapp.com/products/categories/mens%20/products/categories/").when().get(); //do a get with the wrong URL
@@ -84,7 +83,7 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
     }
 
-    @Test //Mia
+    @Test
     public void Test_Mens_Endpoint_With_Correct_Products() {
         String[] expectedTitles = {
                 "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -104,7 +103,7 @@ public class ApiTests {
                 .body("title", hasItem(expectedTitles[3]));
     }
 
-    @Test //Mia
+    @Test
     public void Test_Mens_Endpoint_Has_correct_Price() {
         baseURI = "https://produktapi-6ef53ba8f2f2.herokuapp.com";
         given().
@@ -112,7 +111,6 @@ public class ApiTests {
                 then().statusCode(200).body("[0].price", equalTo(109.95F)); //test just the price of the first product
     }
 
-    // Samuel
     @Test
     @DisplayName("Check endpoint status code of electronics category and make sure it is not empty")
     public void webShopElectronicsCategory() {
@@ -122,7 +120,6 @@ public class ApiTests {
                 then().statusCode(200).body("$", hasSize(greaterThan(0)));
     }
 
-    // Samuel
     @Test
     @DisplayName("Verify the title of a product in the electronics category")
     public void webShopElectronicsCategoryProductDataTitle() {
@@ -132,7 +129,6 @@ public class ApiTests {
                 then().statusCode(200).body("[0].title", equalTo("WD 2TB Elements Portable External Hard Drive - USB 3.0"));
     }
 
-    //Semih
     @Test
     @DisplayName("Check endpoint status code of 'products' and number products")
     public void webShopProductsURL() {
@@ -143,7 +139,6 @@ public class ApiTests {
 
     }
 
-    //Semih
     @Test
     @DisplayName("Check endpoint status code for specific product and products prodct details")
     public void webShopProductURL() {
@@ -156,7 +151,6 @@ public class ApiTests {
         Assertions.assertNotEquals(expectedProductDetails,actualProductDetails); // that assertion should be updated as a assertEqual when each product has endpoint
     }
 
-    // Samuel
     @Test
     @DisplayName("Verify the price of a product in the electronics category")
     public void webShopElectronicsCategoryProductDataPrice() {
@@ -166,7 +160,6 @@ public class ApiTests {
                 then().statusCode(200).body("[1].price", equalTo(109F));
     }
 
-    // Samuel
     @Test
     @DisplayName("Verify the id of a product in the electronics category")
     public void webShopElectronicsCategoryProductDataId() {
@@ -176,7 +169,6 @@ public class ApiTests {
                 then().statusCode(200).body("[2].id", equalTo(11));
     }
 
-    //divya
     @Test
     @DisplayName("Check endpoint status code of Jewelry category and make sure it is not empty")
     public void webShopJewelryCategoryValidURL() {
@@ -186,7 +178,6 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
     }
 
-    //divya
     @Test
     @DisplayName("Check endpoint status code of Jewelry category with wrong URL")
     public void webShopJewelryCategoryInvalidURL() {
@@ -196,7 +187,6 @@ public class ApiTests {
         Assertions.assertEquals(expectedStatusCode, actualStatusCode); //compare the actual with expected
     }
 
-    //divya
     @Test
     @DisplayName("Check response from the endpoint of Jewelry category")
     public void JewelryCategoryResponse() {
@@ -209,7 +199,6 @@ public class ApiTests {
         Assertions.assertEquals(expectedJson, actualJson); //compare the actual with expected
     }
 
-    // Samuel
     @Test
     @DisplayName("Verify data of a product in the  category with specific id")
     public void webShopElectronicsProductData() {
@@ -226,5 +215,4 @@ public class ApiTests {
             .body("description", equalTo("En lite böjd skär Men den funkar ändå!"))
             .body("image", equalTo("https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg"));
     }
-
 }
