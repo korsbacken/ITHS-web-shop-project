@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+// testing github actions
+
 public class Hooks {
     private static WebDriver driver;
 
